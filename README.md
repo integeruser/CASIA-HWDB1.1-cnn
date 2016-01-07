@@ -72,9 +72,8 @@ Epoch 15/15
 Test score: 0.238051910567
 Test accuracy: 0.945760441952
 ```
-The network model and weights will be saved at the end of the training.
 
-(Optional) See some of the obtained results (~20 sec) (example [here](https://integeruser.github.io/misc/CASIA-HWDB1.1-cnn-results.html)):
+(Optional) Generate report of some classifications (~20 sec):
 ```
 ~ ➤ python 4-draw_results.py HWDB1.1subset.hdf5 model.json weights.hdf5
 Using Theano backend.
@@ -85,6 +84,7 @@ Test score: 0.238051910567
 Test accuracy: 0.945760441952
 Extracting some results...
 ```
+Example [here](https://integeruser.github.io/misc/CASIA-HWDB1.1-cnn-results.html).
 
 
 ## License

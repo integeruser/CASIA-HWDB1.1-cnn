@@ -74,7 +74,7 @@ Test accuracy: 0.945760441952
 ```
 The network model and weights will be saved at the end of the training.
 
-(Optional) See some of the obtained results (~20 sec) (example [here]()):
+(Optional) See some of the obtained results (~20 sec) (example [here](https://integeruser.github.io/misc/CASIA-HWDB1.1-cnn-results.html)):
 ```
 ~ ➤ python 4-draw_results.py HWDB1.1subset.hdf5 model.json weights.hdf5
 Using Theano backend.

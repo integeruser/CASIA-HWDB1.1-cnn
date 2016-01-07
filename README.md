@@ -18,6 +18,8 @@ As already stated, we will use a subset of the CASIA-HWDB1.1 data set. Download 
 ## Usage
 Our tests were run under a single GTX 970.
 
+In the [Releases](https://github.com/integeruser/CASIA-HWDB1.1-cnn/releases) section we provide the subset, the network configuration and the network weights generated in the following steps.
+
 Convert the downloaded data set into the more convenient HDF5 binary data format (~20 min):
 ```
 ~ ➤ python 1-gnt_to_dataset.py HWDB1.1trn_gnt HWDB1.1tst_gnt

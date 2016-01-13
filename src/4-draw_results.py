@@ -10,7 +10,7 @@ from keras.models import model_from_json
 import numpy as np
 import PIL.Image
 
-import misc.utils
+import utils
 
 
 def create_cell(i, bitmap, tagcode, correct):
@@ -24,7 +24,7 @@ animation-fill-mode: both; animation-iteration-count: 1;">\n' % (4.5+0.2*(i//5))
     cell += '                <img alt="" src="data:image/png;base64,%s" />\n' % base64.b64encode(buffer.getvalue())
 
     cell += '                <span style="animation-name: %s; animation-delay: %.1fs; animation-duration: 2s; \
-animation-fill-mode: both; animation-iteration-count: 1;">%s</span>\n' % ('togreen' if correct else 'tored', random.uniform(6.0, 18.0), misc.utils.tagcode_to_unicode(tagcode).encode('utf-8'))
+animation-fill-mode: both; animation-iteration-count: 1;">%s</span>\n' % ('togreen' if correct else 'tored', random.uniform(6.0, 18.0), utils.tagcode_to_unicode(tagcode).encode('utf-8'))
 
     cell += '            </div>\n'
     return cell

@@ -3,7 +3,7 @@ import sys
 
 import h5py
 
-import misc.utils
+import utils
 
 if len(sys.argv) != 3:
     print 'Usage: %s trn_dirpath tst_dirpath' % sys.argv[0]
@@ -20,6 +20,6 @@ with h5py.File('HWDB1.1.hdf5', 'w') as f:
         dset_bitmap  = grp.create_dataset('bitmap',  (size, 1, 64, 64), dtype='uint8')
         dset_tagcode = grp.create_dataset('tagcode', (size, 1),         dtype='uint16')
 
-        for i, (bitmap, tagcode) in enumerate(misc.utils.read_gnt_in_directory(dirpath)):
-            dset_bitmap[i]  = misc.utils.normalize_bitmap(bitmap)
+        for i, (bitmap, tagcode) in enumerate(utils.read_gnt_in_directory(dirpath)):
+            dset_bitmap[i]  = utils.normalize_bitmap(bitmap)
             dset_tagcode[i] = tagcode

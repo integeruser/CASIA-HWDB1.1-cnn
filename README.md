@@ -8,7 +8,7 @@ Alessandro and Francesco
 The code uses several Python libraries like Keras and [Theano](http://deeplearning.net/software/theano/). Unfortunately, it is infeasible to run the code on a CPU, and **you must configure Theano to use your GPU**. Install the required dependencies with:
 ```
 pip2 install git+git://github.com/Theano/Theano.git
-pip2 install keras h5py pillow scikit-image
+pip2 install h5py keras pillow scikit-image
 ```
 We tested our code under Theano `0.7.0` and Keras `0.3.1`. Note that we installed Theano directly from git since the released version (at the time of writing) didn't contain the `relu` activation function needed by our convolutional network.
 

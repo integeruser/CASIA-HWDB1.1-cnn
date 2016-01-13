@@ -7,8 +7,8 @@ Alessandro and Francesco
 ## Prerequisites
 The code uses several Python libraries like Keras and [Theano](http://deeplearning.net/software/theano/). Unfortunately, it is infeasible to run the code on a CPU, and **you must configure Theano to use your GPU**. Install the required dependencies with:
 ```
-pip install git+git://github.com/Theano/Theano.git
-pip install keras h5py pillow scikit-image
+pip2 install git+git://github.com/Theano/Theano.git
+pip2 install keras h5py pillow scikit-image
 ```
 We tested our code under Theano `0.7.0` and Keras `0.3.1`. Note that we installed Theano directly from git since the released version (at the time of writing) didn't contain the `relu` activation function needed by our convolutional network.
 
@@ -22,21 +22,21 @@ In the [Releases](https://github.com/integeruser/CASIA-HWDB1.1-cnn/releases) sec
 
 Convert the downloaded data set into the more convenient HDF5 binary data format (~20 min):
 ```
-~ ➤ python 1-gnt_to_dataset.py HWDB1.1trn_gnt HWDB1.1tst_gnt
+~ ➤ python2 1-gnt_to_dataset.py HWDB1.1trn_gnt HWDB1.1tst_gnt
 Converting 'trn'...
 Converting 'tst'...
 ```
 
 Extract from the data set 200 classes of characters (starting from 3755) (~10 min):
 ```
-~ ➤ python 2-dataset_to_subset.py HWDB1.1.hdf5
+~ ➤ python2 2-dataset_to_subset.py HWDB1.1.hdf5
 Subsetting 'trn'...
 Subsetting 'tst'...
 ```
 
 Train the network using the subset (~25 min):
 ```
-~ ➤ python 3-train_subset.py HWDB1.1subset.hdf5
+~ ➤ python2 3-train_subset.py HWDB1.1subset.hdf5
 Using Theano backend.
 Using gpu device 0: GeForce GTX 970 (CNMeM is disabled)
 
@@ -77,7 +77,7 @@ Test accuracy: 0.945760441952
 
 (Optional) Generate report of some classifications (~20 sec):
 ```
-~ ➤ python 4-draw_results.py HWDB1.1subset.hdf5 model.json weights.hdf5
+~ ➤ python2 4-draw_results.py HWDB1.1subset.hdf5 model.json weights.hdf5
 Using Theano backend.
 Using gpu device 0: GeForce GTX 970 (CNMeM is disabled)
 

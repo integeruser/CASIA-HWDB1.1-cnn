@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>gnt-viewer</title>
+</head>
+
+<body>
+    <input type="file" id="file-input" />
+    <h3>First 5 samples:</h3>
+    <pre id="file-content"></pre>
+</body>
+
+<script>
+    function toCanvas(bitmap, width, height) {
+        var canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+        canvas.style.border = "1px dashed";
+        canvas.style.margin = "1em";
+
+        var context = canvas.getContext("2d");
+        for (r = 0; r < height; r++) {
+            for (c = 0; c < width; c++) {
+                var grey = bitmap[r * width + c]
+                var rgb = grey * 0x00010101;
+                context.fillStyle = "#" + rgb.toString(16);
+                context.fillRect(c, r, 1, 1);
+            }
+        }
+        return canvas;
+    }
+
+    document.getElementById("file-input").addEventListener("change", function(e) {
+        var file = e.target.files[0];
+        if (!file) return;
+
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            var gntFile = e.target.result;
+
+            var HEADER_SIZE = 10;
+            var byteOffset = 0,
+                n = 0;
+
+            // in each iteration we parse a different char
+            while (n < 5) {
+                // while (byteOffset < gntFile.byteLength) {
+                var header = new Uint8Array(gntFile, byteOffset, HEADER_SIZE);
+                byteOffset += HEADER_SIZE;
+
+                var sampleSize = header[0] + (header[1] << 8) + (header[2] << 16) + (header[3] << 24);
+                var width = header[6] + (header[7] << 8);
+                var height = header[8] + (header[9] << 8);
+                console.assert(HEADER_SIZE + width * height === sampleSize);
+
+                var bitmap = new Uint8Array(gntFile, byteOffset, width * height)
+                byteOffset += width * height;
+
+                var canvas = toCanvas(bitmap, width, height);
+                document.body.appendChild(canvas);
+                n++;
+            }
+        };
+        reader.readAsArrayBuffer(file);
+    }, false);
+</script>
+
+</html>

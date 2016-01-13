@@ -22,21 +22,26 @@ In the releases section we uploaded the (zipped) [subset](https://github.com/int
 
 Convert the downloaded data set into the more convenient HDF5 binary data format (~20 min):
 ```
-~ ➤ python2 1-gnt_to_dataset.py HWDB1.1trn_gnt HWDB1.1tst_gnt
+CASIA-HWDB1.1-cnn ➤ ls
+README.md misc      src
+CASIA-HWDB1.1-cnn ➤ cd src
+src ➤ ls
+1-gnt_to_dataset.py    2-dataset_to_subset.py 3-train_subset.py      4-draw_results.py
+src ➤ python2 1-gnt_to_dataset.py HWDB1.1trn_gnt HWDB1.1tst_gnt
 Converting 'trn'...
 Converting 'tst'...
 ```
 
 Extract from the data set 200 classes of characters (starting from 3755) (~10 min):
 ```
-~ ➤ python2 2-dataset_to_subset.py HWDB1.1.hdf5
+src ➤ python2 2-dataset_to_subset.py HWDB1.1.hdf5
 Subsetting 'trn'...
 Subsetting 'tst'...
 ```
 
 Train the network using the subset (~25 min):
 ```
-~ ➤ python2 3-train_subset.py HWDB1.1subset.hdf5
+src ➤ python2 3-train_subset.py HWDB1.1subset.hdf5
 Using Theano backend.
 Using gpu device 0: GeForce GTX 970 (CNMeM is disabled)
 
@@ -77,7 +82,7 @@ Test accuracy: 0.945760441952
 
 (Optional) Generate report of some classifications (~20 sec):
 ```
-~ ➤ python2 4-draw_results.py HWDB1.1subset.hdf5 model.json weights.hdf5
+src ➤ python2 4-draw_results.py HWDB1.1subset.hdf5 model.json weights.hdf5
 Using Theano backend.
 Using gpu device 0: GeForce GTX 970 (CNMeM is disabled)
 

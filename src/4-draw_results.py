@@ -10,23 +10,23 @@ from keras.models import model_from_json
 import numpy as np
 import PIL.Image
 
-import misc.utils
+import utils
 
 
 def create_cell(i, bitmap, tagcode, correct):
-    cell = '            <div class="cell" style="animation-name: appear; animation-delay: %.1fs; animation-duration: 0.7s; \
-animation-fill-mode: both; animation-iteration-count: 1;">\n' % (4.5+0.2*(i//5))
+    cell = '                <div class="cell" style="animation-name: appear; animation-delay: %.1fs; animation-duration: 0.7s; \
+animation-fill-mode: both; animation-iteration-count: 1;">\n' % (4.0+0.2*(i//4))
 
     # save bitmap as data uri
     im = PIL.Image.fromarray(np.squeeze(x, axis=0))
     buffer = cStringIO.StringIO()
     im.save(buffer, format='png')
-    cell += '                <img alt="" src="data:image/png;base64,%s" />\n' % base64.b64encode(buffer.getvalue())
+    cell += '                    <img alt="" src="data:image/png;base64,%s" />\n' % base64.b64encode(buffer.getvalue())
 
-    cell += '                <span style="animation-name: %s; animation-delay: %.1fs; animation-duration: 2s; \
-animation-fill-mode: both; animation-iteration-count: 1;">%s</span>\n' % ('togreen' if correct else 'tored', random.uniform(6.0, 18.0), misc.utils.tagcode_to_unicode(tagcode).encode('utf-8'))
+    cell += '                    <span style="animation-name: %s; animation-delay: %.1fs; animation-duration: 2s; \
+animation-fill-mode: both; animation-iteration-count: 1;">%s</span>\n' % ('togreen' if correct else 'tored', random.uniform(6.0, 18.0), utils.tagcode_to_unicode(tagcode).encode('utf-8'))
 
-    cell += '            </div>\n'
+    cell += '                </div>\n'
     return cell
 
 
@@ -86,7 +86,8 @@ with h5py.File(subset_filepath, 'r') as f1, open('results.html', 'w') as f2:
                 100% { border-color: #C00; }
             }
 
-            .wrap {
+            /*
+            #wrapper {
                 background: #E5D9C7;
                 box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.75);
                 display: table;
@@ -94,13 +95,14 @@ with h5py.File(subset_filepath, 'r') as f1, open('results.html', 'w') as f2:
                 padding: 2em;
 
                 animation-name: appear;
-                animation-delay: 1s;
+                animation-delay: 0.7s;
                 animation-duration: 0.3s;
                 animation-fill-mode: both;
                 animation-iteration-count: 1;
             }
+            */
 
-            .title {
+            #title {
                 color: #171412;
                 display: block;
                 font-family: GangOfThree;
@@ -113,7 +115,7 @@ with h5py.File(subset_filepath, 'r') as f1, open('results.html', 'w') as f2:
                 animation-fill-mode: both;
                 animation-iteration-count: 1;
             }
-            .subtitle {
+            #subtitle {
                 color: #171412;
                 display: block;
                 font-family: GangOfThree;
@@ -125,6 +127,11 @@ with h5py.File(subset_filepath, 'r') as f1, open('results.html', 'w') as f2:
                 animation-duration: 0.3s;
                 animation-fill-mode: both;
                 animation-iteration-count: 1;
+            }
+
+            #cells {
+                display: table;
+                margin: 0 auto;
             }
 
             .cell {
@@ -151,20 +158,23 @@ with h5py.File(subset_filepath, 'r') as f1, open('results.html', 'w') as f2:
         </style>
     </head>
     <body>
-        <div class="wrap">
-            <span class="title">CLASSIFICATION RESULTS</span>
+        <div id="wrapper">
+            <span id="title">CLASSIFICATION RESULTS</span>
             <p>
-            <span class="subtitle">ACCURACY: ''' + ('%.5f' % score[1]) + '''</span>
-            <p>\n''')
+            <span id="subtitle">ACCURACY: ''' + ('%.5f' % score[1]) + '''</span>
+            <p>
+            <div id="cells">
+            \n''')
 
-    for i in range(100):
+    for i in range(96):
         index = random.randint(0, 11947-1)
         x, y, t = f1['tst/x'][index], f1['tst/y'][index], f1['tst/t'][index]
         score = model.evaluate(np.expand_dims(x, axis=0), np.expand_dims(y, axis=0), verbose=0, show_accuracy=True)
         f2.write(create_cell(i, x, t, score[1] == 1))
-        if (i+1)%5 == 0: f2.write('            <br>\n')
+        if (i+1)%4 == 0: f2.write('                <br>\n')
 
     f2.write('''\
+            </div>
         </div>
     </body>
 </html>''')

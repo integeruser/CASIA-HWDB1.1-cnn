@@ -1,6 +1,6 @@
 #!/usr/bin/env python2
-# This script can be used to see how the bitmap are processed in utils.preprocess_bitmap()
-# Useful to test different preprocesses before creating the .hdf5 data set
+# This script can be used to see how bitmaps will be preprocessed before
+# subsetting the CASIA HWDB1.1 data set
 import sys
 
 import matplotlib.cm as cm

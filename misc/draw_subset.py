@@ -7,8 +7,6 @@ import tempfile
 from collections import defaultdict
 
 import h5py
-import matplotlib.cm as cm
-import matplotlib.pyplot as plt
 import numpy as np
 import PIL.Image
 
@@ -43,3 +41,4 @@ with h5py.File(subset_filepath, 'r') as f:
 
             im = PIL.Image.fromarray(bitmap)
             im.convert('RGB').save(os.path.join('out-'+name, str(label)+'.png'))
+            sys.exit(1)

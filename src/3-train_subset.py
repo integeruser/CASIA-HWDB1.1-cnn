@@ -18,7 +18,7 @@ if len(sys.argv) != 2:
 
 subset_filepath = sys.argv[1]
 
-# as described in http://cs231n.stanford.edu/reports/zyh_project.pdf
+# as described in http://yuhao.im/files/Zhang_CNNChar.pdf
 model = Sequential()
 model.add(Conv2D(64, (3, 3), weights=[np.random.normal(0, 0.01, size=(3, 3, 1, 64)), np.zeros(64)],
                         activation='relu', padding='same', strides=(1, 1),

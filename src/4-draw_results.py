@@ -44,11 +44,12 @@ with open(model_filepath) as f:
     model = model_from_json(json.dumps(d))
 
 model.load_weights(weights_filepath)
+model.compile(loss='categorical_crossentropy', optimizer='adadelta', metrics=['accuracy'])
 
 # test the model and output results
 with h5py.File(subset_filepath, 'r') as f1, open('results.html', 'w') as f2:
     print 'Evaluating the network on the test set...'
-    score = model.evaluate(f1['tst/x'], f1['tst/y'], verbose=0, show_accuracy=True)
+    score = model.evaluate(f1['tst/x'], f1['tst/y'], verbose=0)
     print 'Test score:', score[0]
     print 'Test accuracy:', score[1]
 
@@ -169,7 +170,7 @@ with h5py.File(subset_filepath, 'r') as f1, open('results.html', 'w') as f2:
     for i in range(96):
         index = random.randint(0, 11947-1)
         x, y, t = f1['tst/x'][index], f1['tst/y'][index], f1['tst/t'][index]
-        score = model.evaluate(np.expand_dims(x, axis=0), np.expand_dims(y, axis=0), verbose=0, show_accuracy=True)
+        score = model.evaluate(np.expand_dims(x, axis=0), np.expand_dims(y, axis=0), verbose=0)
         f2.write(create_cell(i, x, t, score[1] == 1))
         if (i+1)%4 == 0: f2.write('                <br>\n')
 

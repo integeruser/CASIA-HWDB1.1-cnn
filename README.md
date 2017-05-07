@@ -19,7 +19,7 @@ The code was last tested on Keras 2.0.4 using Theano 0.9.0 as backend, h5py 2.7.
 ## Usage
 In the releases section we uploaded a (zipped) [subset](https://github.com/integeruser/CASIA-HWDB1.1-cnn/releases/download/v1.1/HWDB1.1subset.hdf5.zip) of the CASIA-HWDB1.1 data set, the [network model](https://github.com/integeruser/CASIA-HWDB1.1-cnn/releases/download/v1.1/model.json), [network weights](https://github.com/integeruser/CASIA-HWDB1.1-cnn/releases/download/v1.1/weights.hdf5) and [some classifications](https://github.com/integeruser/CASIA-HWDB1.1-cnn/releases/download/v1.1/results.html), all generated following the steps below. If you use our subset, start from step 3.
 
-0. Download the CASIA-HWDB1.1 data set from the official locations and unzip [HWDB1.1trn_gnt.zip](http://www.nlpr.ia.ac.cn/databases/download/feature_data/HWDB1.1trn_gnt.zip) (1873 MB) and [HWDB1.1tst_gnt.zip](http://www.nlpr.ia.ac.cn/databases/download/feature_data/HWDB1.1tst_gnt.zip) (471 MB);
+0. Download the CASIA-HWDB1.1 data set from the official locations and unzip [HWDB1.1trn_gnt.zip](http://www.nlpr.ia.ac.cn/databases/download/feature_data/HWDB1.1trn_gnt.zip) (1873 MB) and [HWDB1.1tst_gnt.zip](http://www.nlpr.ia.ac.cn/databases/download/feature_data/HWDB1.1tst_gnt.zip) (471 MB) (it is required to decompress an archive in ALZ format);
 1. Convert the data set into the HDF5 binary data format (~20 min):
 ```
 $ python2 1-gnt_to_dataset.py HWDB1.1trn_gnt/ HWDB1.1tst_gnt/

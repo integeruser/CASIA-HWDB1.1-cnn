@@ -5,7 +5,7 @@ Alessandro and Francesco
 
 
 ## Requisites
-We assume you have already installed and configured Keras. Install the other required dependencies with:
+We assume you have already installed and configured Keras with any of its backends. Install the other required dependencies with:
 ```
 $ pip2 install h5py numpy scipy Pillow scikit-image
 ```
@@ -15,20 +15,44 @@ The code was last tested on Keras 2.0.4 using Theano 0.9.0 as backend, h5py 2.7.
 ## Usage
 In the releases section we uploaded a (zipped) [subset](https://github.com/integeruser/CASIA-HWDB1.1-cnn/releases/download/v1.1/HWDB1.1subset.hdf5.zip) of the CASIA-HWDB1.1 data set, the [network model](https://github.com/integeruser/CASIA-HWDB1.1-cnn/releases/download/v1.1/model.json), [network weights](https://github.com/integeruser/CASIA-HWDB1.1-cnn/releases/download/v1.1/weights.hdf5) and [some classifications](https://github.com/integeruser/CASIA-HWDB1.1-cnn/releases/download/v1.1/results.html), all generated following the steps below. If you use our subset, start from step 3.
 
-0. Download the CASIA-HWDB1.1 data set from the official locations and unzip [HWDB1.1trn_gnt.zip](http://www.nlpr.ia.ac.cn/databases/download/feature_data/HWDB1.1trn_gnt.zip) (1873 MB) and [HWDB1.1tst_gnt.zip](http://www.nlpr.ia.ac.cn/databases/download/feature_data/HWDB1.1tst_gnt.zip) (471 MB) (it is required to decompress an archive in ALZ format);
-1. Convert the data set into the HDF5 binary data format (~20 min):
+0. Download the CASIA-HWDB1.1 data set from the official locations ([HWDB1.1trn_gnt.zip](http://www.nlpr.ia.ac.cn/databases/download/feature_data/HWDB1.1trn_gnt.zip) (1873 MB) and [HWDB1.1tst_gnt.zip](http://www.nlpr.ia.ac.cn/databases/download/feature_data/HWDB1.1tst_gnt.zip) (471 MB)) and unzip it (it is required to decompress an archive in ALZ format):
+```
+$ unzip HWDB1.1trn_gnt.zip
+Archive:  HWDB1.1trn_gnt.zip
+  inflating: HWDB1.1trn_gnt.alz
+$ unalz HWDB1.1trn_gnt.alz
+unalz v0.65 (2009/04/01)
+Copyright(C) 2004-2009 by kippler@gmail.com (http://www.kipple.pe.kr)
+
+Extract HWDB1.1trn_gnt.alz to .
+
+unalziiiing : 1219-c.gnt (21547829bytes) ...........
+unalziiiing : 1220-c.gnt (26773966bytes) ...........
+[...]
+$ mkdir HWDB1.1trn_gnt
+$ mv *.gnt HWDB1.1trn_gnt/
+
+$ unzip HWDB1.1tst_gnt.zip
+Archive:  HWDB1.1tst_gnt.zip
+  inflating: 1289-c.gnt
+  inflating: 1290-c.gnt
+  [...]
+$ mkdir HWDB1.1tst_gnt
+$ mv *.gnt HWDB1.1tst_gnt/
+```
+1. Convert the data set into the HDF5 binary data format:
 ```
 $ python2 1-gnt_to_dataset.py HWDB1.1trn_gnt/ HWDB1.1tst_gnt/
 Converting 'trn'...
 Converting 'tst'...
 ```
-2. Extract from the HDF5 data set a subset of 200 classes of characters (~10 min):
+2. Extract from the HDF5 data set a subset of 200 classes of characters:
 ```
 $ python2 2-dataset_to_subset.py HWDB1.1.hdf5
 Subsetting 'trn'...
 Subsetting 'tst'...
 ```
-3. Train the network on the subset (~15 min):
+3. Train the network on the subset:
 ```
 $ python2 3-train_subset.py HWDB1.1subset.hdf5
 Using Theano backend.
@@ -68,7 +92,7 @@ Epoch 15/15
 Test score: 0.189350152647
 Test accuracy: 0.95839959825
 ```
-4. (Optional) Generate a report of some classifications (~20 sec):
+4. (Optional) Generate a report of some classifications:
 ```
 $ python2 4-draw_results.py HWDB1.1subset.hdf5 model.json weights.hdf5
 Using Theano backend.

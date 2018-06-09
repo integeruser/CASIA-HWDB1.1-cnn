@@ -22,7 +22,7 @@ subset_filepath = sys.argv[1]
 model = Sequential()
 model.add(Conv2D(64, (3, 3), weights=[np.random.normal(0, 0.01, size=(3, 3, 1, 64)), np.zeros(64)],
                         activation='relu', padding='same', strides=(1, 1),
-                        input_shape=(1, 64, 64)))
+                        input_shape=(1, 64, 64), data_format='channels_first'))
 model.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2)))
 
 model.add(Conv2D(128, (3, 3), weights=[np.random.normal(0, 0.01, size=(3, 3, 64, 128)), np.zeros(128)],

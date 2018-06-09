@@ -7,7 +7,7 @@ Alessandro and Francesco
 ## Requisites
 We assume you have already installed and configured Keras with any of its backends. Install the other required dependencies with:
 ```
-$ pip2 install h5py numpy scipy Pillow scikit-image
+$ pip install -r requirements.txt
 ```
 The code was last tested on Keras 2.0.4 using Theano 0.9.0 as backend, h5py 2.7.0, numpy 1.12.1, scipy 0.19.0, Pillow 4.1.1 and scikit-image 0.13.0. Tests were run under a single GeForce GTX 970 using a floating-point precision of 32 bits.
 

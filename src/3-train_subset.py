@@ -44,7 +44,7 @@ model.add(Dense(200, activation='softmax'))
 model.compile(loss='categorical_crossentropy', optimizer='adadelta', metrics=['accuracy'])
 
 timestamp = int(time.time())
-with open('%d-model.json' % timestamp, 'w') as f:
+with open('model-%d.json' % timestamp, 'w') as f:
     d = json.loads(model.to_json())
     json.dump(d, f, indent=4)
 
@@ -56,4 +56,4 @@ with h5py.File(subset_filepath, 'r') as f:
     print 'Test score:', score[0]
     print 'Test accuracy:', score[1]
 
-    model.save_weights('%d-weights-%f.hdf5' % (timestamp, score[1]))
+    model.save_weights('weights-%d-%f.hdf5' % (timestamp, score[1]))

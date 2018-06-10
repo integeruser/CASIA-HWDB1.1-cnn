@@ -11,7 +11,7 @@ $ pip3 install -r requirements.txt
 The code was last tested on Keras 2.1.5 using TensorFlow 1.8.0 as backend, h5py 2.7.1, numpy 1.14.2, Pillow 5.1.0, scikit-image 0.14.0 and scipy 1.0.0. Tests were run under a single GeForce GTX 970.
 
 ## Usage
-In the releases section we uploaded a (zipped) [subset](https://github.com/integeruser/CASIA-HWDB1.1-cnn/releases/download/v1.1/HWDB1.1subset.hdf5.zip) of the CASIA-HWDB1.1 data set, the [network model](https://github.com/integeruser/CASIA-HWDB1.1-cnn/releases/download/v1.1/model.json), [network weights](https://github.com/integeruser/CASIA-HWDB1.1-cnn/releases/download/v1.1/weights.hdf5) and [some classifications](https://github.com/integeruser/CASIA-HWDB1.1-cnn/releases/download/v1.1/results.html), all generated following the steps below. If you use our subset, start from step 3.
+In the [releases section](https://github.com/integeruser/CASIA-HWDB1.1-cnn/releases) we uploaded a (zipped) subset of the CASIA-HWDB1.1 data set, a trained model and some classifications, all generated following the steps below. If you use our subset, start from step 3.
 
 0. Download the CASIA-HWDB1.1 data set from the official locations ([HWDB1.1trn_gnt.zip](http://www.nlpr.ia.ac.cn/databases/download/feature_data/HWDB1.1trn_gnt.zip) (1873 MB) and [HWDB1.1tst_gnt.zip](http://www.nlpr.ia.ac.cn/databases/download/feature_data/HWDB1.1tst_gnt.zip) (471 MB)) and unzip it (it is required to decompress an archive in ALZ format):
 ```

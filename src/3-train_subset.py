@@ -1,4 +1,5 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 import json
 import sys
 import time
@@ -13,7 +14,7 @@ from keras.models import Sequential
 from keras.regularizers import l2
 
 if len(sys.argv) != 2:
-    print 'Usage: %s subset_filepath' % sys.argv[0]
+    print('Usage: %s subset_filepath' % sys.argv[0])
     sys.exit(1)
 
 subset_filepath = sys.argv[1]
@@ -53,7 +54,7 @@ with h5py.File(subset_filepath, 'r') as f:
               epochs=15, batch_size=128, shuffle='batch', verbose=1)
 
     score = model.evaluate(f['tst/x'], f['tst/y'], verbose=0)
-    print 'Test score:', score[0]
-    print 'Test accuracy:', score[1]
+    print('Test score:', score[0])
+    print('Test accuracy:', score[1])
 
     model.save_weights('weights-%d-%f.hdf5' % (timestamp, score[1]))

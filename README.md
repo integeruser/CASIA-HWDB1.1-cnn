@@ -7,7 +7,7 @@ Alessandro and Francesco
 ## Requisites
 We assume you have already installed and configured Keras with any of its backends. Install the other required dependencies with:
 ```
-$ pip install -r requirements.txt
+$ pip3 install -r requirements.txt
 ```
 The code was last tested on Keras 2.0.4 using Theano 0.9.0 as backend, h5py 2.7.0, numpy 1.12.1, scipy 0.19.0, Pillow 4.1.1 and scikit-image 0.13.0. Tests were run under a single GeForce GTX 970 using a floating-point precision of 32 bits.
 
@@ -42,19 +42,19 @@ $ mv *.gnt HWDB1.1tst_gnt/
 ```
 1. Convert the data set into the HDF5 binary data format:
 ```
-$ python2 1-gnt_to_dataset.py HWDB1.1trn_gnt/ HWDB1.1tst_gnt/
+$ python3 1-gnt_to_dataset.py HWDB1.1trn_gnt/ HWDB1.1tst_gnt/
 Converting 'trn'...
 Converting 'tst'...
 ```
 2. Extract from the HDF5 data set a subset of 200 classes of characters:
 ```
-$ python2 2-dataset_to_subset.py HWDB1.1.hdf5
+$ python3 2-dataset_to_subset.py HWDB1.1.hdf5
 Subsetting 'trn'...
 Subsetting 'tst'...
 ```
 3. Train the network on the subset:
 ```
-$ python2 3-train_subset.py HWDB1.1subset.hdf5
+$ python3 3-train_subset.py HWDB1.1subset.hdf5
 Using Theano backend.
 
 Using gpu device 0: GeForce GTX 970 (CNMeM is disabled, cuDNN not available)
@@ -94,7 +94,7 @@ Test accuracy: 0.95839959825
 ```
 4. (Optional) Generate a report of some classifications:
 ```
-$ python2 4-draw_results.py HWDB1.1subset.hdf5 model.json weights.hdf5
+$ python3 4-draw_results.py HWDB1.1subset.hdf5 model.json weights.hdf5
 Using Theano backend.
 
 Using gpu device 0: GeForce GTX 970 (CNMeM is disabled, cuDNN not available)

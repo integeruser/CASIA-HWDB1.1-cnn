@@ -1,4 +1,5 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 # This script is useful to check if the CASIA HWDB1.1 subset was created correctly
 import random
 import sys
@@ -9,7 +10,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 if len(sys.argv) != 2:
-    print 'Usage: %s subset_filepath' % sys.argv[0]
+    print('Usage: %s subset_filepath' % sys.argv[0])
     exit()
 
 subset_filepath = sys.argv[1]
@@ -20,9 +21,9 @@ with h5py.File(subset_filepath, 'r') as f:
         i = random.randint(0, len(f[dset+'/x']))
 
         bitmap = f[dset+'/x'][i]
-        print bitmap
-        print bitmap.shape
-        print np.mean(bitmap)
+        print(bitmap)
+        print(bitmap.shape)
+        print(np.mean(bitmap))
         assert sum(f[dset+'/y'][i]) == 1
 
         plt.imshow(np.squeeze(bitmap, axis=0), cmap=cm.Greys_r)

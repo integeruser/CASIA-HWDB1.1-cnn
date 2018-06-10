@@ -1,4 +1,5 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 # This script can be used to see how bitmaps will be preprocessed before
 # subsetting the CASIA HWDB1.1 data set
 import sys
@@ -10,13 +11,13 @@ import numpy as np
 import utils
 
 if len(sys.argv) != 2:
-    print 'Usage: %s gnt_dirpath' % sys.argv[0]
+    print('Usage: %s gnt_dirpath' % sys.argv[0])
     exit()
 
 gnt_dirpath = sys.argv[1]
 
 for i, (bitmap, tagcode) in enumerate(utils.read_gnt_in_directory(gnt_dirpath)):
-    print utils.tagcode_to_unicode(tagcode).encode('utf-8')  # wrong terminal encoding = garbage
+    print(utils.tagcode_to_unicode(tagcode))  # wrong terminal encoding = garbage
 
     proc_bitmap = utils.normalize_bitmap(bitmap)
     proc_bitmap = utils.preprocess_bitmap(proc_bitmap)

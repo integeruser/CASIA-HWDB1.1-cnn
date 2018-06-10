@@ -1,4 +1,5 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 # This script counts the characters of the CASIA HWDB1.1 data set
 import sys
 from collections import Counter, defaultdict
@@ -6,7 +7,7 @@ from collections import Counter, defaultdict
 import utils
 
 if len(sys.argv) != 3:
-    print 'Usage: %s trn_dirpath tst_dirpath' % sys.argv[0]
+    print('Usage: %s trn_dirpath tst_dirpath' % sys.argv[0])
     exit()
 
 trn_dirpath = sys.argv[1]
@@ -21,5 +22,5 @@ for bitmap, tagcode in utils.read_gnt_in_directory(tst_dirpath):
     frequencies[tagcode_unicode].update(tst=1)
 
 with open('frequencies.txt', 'w') as f:
-    for k, v in sorted(frequencies.iteritems(), key=lambda (k, v): v['trn'], reverse=True):
+    for k, v in sorted(frequencies.items(), key=lambda k_v: k_v[1]['trn'], reverse=True):
         f.write('%s: %d, %d\n' % (k.encode('utf-8'), v['trn'], v['tst']))

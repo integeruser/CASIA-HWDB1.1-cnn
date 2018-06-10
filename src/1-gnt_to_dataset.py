@@ -1,4 +1,5 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 import sys
 
 import h5py
@@ -6,7 +7,7 @@ import h5py
 import utils
 
 if len(sys.argv) != 3:
-    print 'Usage: %s trn_dirpath tst_dirpath' % sys.argv[0]
+    print('Usage: %s trn_dirpath tst_dirpath' % sys.argv[0])
     sys.exit(1)
 
 trn_dirpath = sys.argv[1]
@@ -14,7 +15,7 @@ tst_dirpath = sys.argv[2]
 
 with h5py.File('HWDB1.1.hdf5', 'w') as f:
     for name, size, dirpath in [('trn', 897758, trn_dirpath), ('tst', 223991, tst_dirpath)]:
-        print 'Converting \'%s\'...' % name
+        print('Converting \'%s\'...' % name)
 
         grp = f.create_group(name)
         dset_bitmap  = grp.create_dataset('bitmap',  (size, 1, 64, 64), dtype='uint8')

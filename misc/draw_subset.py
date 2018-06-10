@@ -1,4 +1,5 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 # This script saves in a temporary folder the pictures of all the characters
 # of the subset, grouped by tagcode
 import os
@@ -11,14 +12,14 @@ import numpy as np
 import PIL.Image
 
 if len(sys.argv) != 2:
-    print 'Usage: %s subset_filepath' % sys.argv[0]
+    print('Usage: %s subset_filepath' % sys.argv[0])
     sys.exit(1)
 
 subset_filepath = sys.argv[1]
 
 with h5py.File(subset_filepath, 'r') as f:
     dirpath = tempfile.mkdtemp()
-    print 'Saving images in \'%s\'...' % dirpath
+    print('Saving images in \'%s\'...' % dirpath)
 
     os.chdir(dirpath)
 
@@ -30,7 +31,7 @@ with h5py.File(subset_filepath, 'r') as f:
             label_to_indexes[label].append(i)
 
         os.mkdir('out-'+name)
-        for label, indexes in label_to_indexes.iteritems():
+        for label, indexes in label_to_indexes.items():
             bitmap = np.array([]).reshape((0, 64*20))
 
             bitmaps = [np.squeeze(f[name+'/x'][index], axis=0) for index in indexes]

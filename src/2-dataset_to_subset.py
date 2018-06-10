@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import sys
 from collections import defaultdict
@@ -11,12 +11,12 @@ import numpy as np
 import utils
 
 if len(sys.argv) != 2:
-    print 'Usage: %s dataset_filepath' % sys.argv[0]
+    print('Usage: %s dataset_filepath' % sys.argv[0])
     sys.exit(1)
 
 dataset_filepath = sys.argv[1]
 
-allowed = set(utils.unicode_to_tagcode(c) for c in [u'谈',u'般',u'盏',u'坤',u'膀',u'脂',u'型',u'骏',u'童',u'挟',u'损',u'恋',u'婴',u'读',u'账',u'服',u'任',u'茸',u'张',u'亢',u'耀',u'涉',u'个',u'随',u'挂',u'抗',u'贞',u'瞥',u'瘤',u'作',u'河',u'欲',u'侵',u'吸',u'眺',u'线',u'捂',u'倾',u'牌',u'筒',u'渊',u'拥',u'话',u'赞',u'知',u'除',u'巩',u'惫',u'揭',u'扬',u'驼',u'绿',u'渔',u'榆',u'辊',u'应',u'儡',u'假',u'崩',u'抬',u'是',u'讲',u'刷',u'鸿',u'契',u'寒',u'录',u'教',u'也',u'艾',u'囤',u'秦',u'峨',u'括',u'诲',u'滴',u'凶',u'须',u'孽',u'巾',u'沉',u'餐',u'暂',u'蒙',u'攘',u'键',u'厄',u'的',u'芭',u'岳',u'惜',u'椰',u'足',u'伴',u'离',u'笼',u'临',u'胁',u'泉',u'晚',u'迟',u'汞',u'级',u'跳',u'轴',u'偶',u'啸',u'移',u'贾',u'老',u'节',u'蜗',u'堑',u'帕',u'肖',u'伟',u'渝',u'撮',u'臀',u'吉',u'汉',u'反',u'双',u'坏',u'翔',u'胖',u'绪',u'固',u'舀',u'再',u'咏',u'堂',u'尔',u'沟',u'符',u'涵',u'水',u'误',u'岿',u'所',u'摄',u'广',u'结',u'学',u'苫',u'臭',u'恬',u'诱',u'递',u'烷',u'硼',u'茁',u'标',u'越',u'吏',u'笑',u'馒',u'耗',u'氟',u'加',u'砧',u'稻',u'晃',u'臂',u'其',u'配',u'城',u'筑',u'痹',u'揖',u'江',u'连',u'卡',u'狠',u'瓤',u'乳',u'赵',u'仿',u'睹',u'相',u'好',u'屿',u'争',u'袭',u'王',u'吃',u'疏',u'粕',u'涟',u'垣',u'逢',u'锤',u'覆',u'薯',u'贴',u'冷',u'霸',u'聂',u'糕',u'占'])
+allowed = set(utils.unicode_to_tagcode(c) for c in ['谈','般','盏','坤','膀','脂','型','骏','童','挟','损','恋','婴','读','账','服','任','茸','张','亢','耀','涉','个','随','挂','抗','贞','瞥','瘤','作','河','欲','侵','吸','眺','线','捂','倾','牌','筒','渊','拥','话','赞','知','除','巩','惫','揭','扬','驼','绿','渔','榆','辊','应','儡','假','崩','抬','是','讲','刷','鸿','契','寒','录','教','也','艾','囤','秦','峨','括','诲','滴','凶','须','孽','巾','沉','餐','暂','蒙','攘','键','厄','的','芭','岳','惜','椰','足','伴','离','笼','临','胁','泉','晚','迟','汞','级','跳','轴','偶','啸','移','贾','老','节','蜗','堑','帕','肖','伟','渝','撮','臀','吉','汉','反','双','坏','翔','胖','绪','固','舀','再','咏','堂','尔','沟','符','涵','水','误','岿','所','摄','广','结','学','苫','臭','恬','诱','递','烷','硼','茁','标','越','吏','笑','馒','耗','氟','加','砧','稻','晃','臂','其','配','城','筑','痹','揖','江','连','卡','狠','瓤','乳','赵','仿','睹','相','好','屿','争','袭','王','吃','疏','粕','涟','垣','逢','锤','覆','薯','贴','冷','霸','聂','糕','占'])
 assert len(allowed) == 200
 
 counter = count()
@@ -24,7 +24,7 @@ tagcode_to_label = dict()
 label_to_categorical = dict()
 
 with h5py.File(dataset_filepath, 'r') as f1, h5py.File('HWDB1.1subset.hdf5', 'w') as f2:
-    print 'Subsetting \'trn\'...'
+    print('Subsetting \'trn\'...')
     # find allowed characters in the data set
     tagcode_to_count = defaultdict(int)
     indexes = list()
@@ -71,7 +71,7 @@ with h5py.File(dataset_filepath, 'r') as f1, h5py.File('HWDB1.1subset.hdf5', 'w'
 
     ############################################################################
 
-    print 'Subsetting \'tst\'...'
+    print('Subsetting \'tst\'...')
     # find allowed characters in the data set
     indexes = [i for i in range(223991) if f1['tst/tagcode'][i][0] in allowed]
     new_size = len(indexes)

@@ -1,0 +1,4 @@
+**/__pycache__/
+**/HWDB1.1subset.hdf5
+**/model-*.json
+**/weights-*.hdf5

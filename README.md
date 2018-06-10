@@ -3,14 +3,12 @@ This repository contains our experiments with the deep learning library [Keras](
 
 Alessandro and Francesco
 
-
 ## Requisites
 We assume you have already installed and configured Keras with any of its backends. Install the other required dependencies with:
 ```
 $ pip3 install -r requirements.txt
 ```
-The code was last tested on Keras 2.0.4 using Theano 0.9.0 as backend, h5py 2.7.0, numpy 1.12.1, scipy 0.19.0, Pillow 4.1.1 and scikit-image 0.13.0. Tests were run under a single GeForce GTX 970 using a floating-point precision of 32 bits.
-
+The code was last tested on Keras 2.1.5 using TensorFlow 1.8.0 as backend, h5py 2.7.1, numpy 1.14.2, Pillow 5.1.0, scikit-image 0.14.0 and scipy 1.0.0. Tests were run under a single GeForce GTX 970.
 
 ## Usage
 In the releases section we uploaded a (zipped) [subset](https://github.com/integeruser/CASIA-HWDB1.1-cnn/releases/download/v1.1/HWDB1.1subset.hdf5.zip) of the CASIA-HWDB1.1 data set, the [network model](https://github.com/integeruser/CASIA-HWDB1.1-cnn/releases/download/v1.1/model.json), [network weights](https://github.com/integeruser/CASIA-HWDB1.1-cnn/releases/download/v1.1/weights.hdf5) and [some classifications](https://github.com/integeruser/CASIA-HWDB1.1-cnn/releases/download/v1.1/results.html), all generated following the steps below. If you use our subset, start from step 3.
@@ -55,51 +53,36 @@ Subsetting 'tst'...
 3. Train the network on the subset:
 ```
 $ python3 3-train_subset.py HWDB1.1subset.hdf5
-Using Theano backend.
-
-Using gpu device 0: GeForce GTX 970 (CNMeM is disabled, cuDNN not available)
+Using TensorFlow backend.
+. . .
+2018-06-10 10:18:51.390792: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1053] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 3608 MB memory) -> physical GPU (device: 0, name: GeForce GTX 970, p
+ci bus id: 0000:02:00.0, compute capability: 5.2)
 Train on 40000 samples, validate on 8020 samples
 Epoch 1/15
-40000/40000 [==============================] - 65s - loss: 3.5933 - acc: 0.2570 - val_loss: 1.0810 - val_acc: 0.7385
+40000/40000 [==============================] - 41s 1ms/step - loss: 4.5114 - acc: 0.0975 - val_loss: 2.2487 - val_a
+cc: 0.4542
 Epoch 2/15
-40000/40000 [==============================] - 65s - loss: 1.0313 - acc: 0.7361 - val_loss: 0.5121 - val_acc: 0.8686
+40000/40000 [==============================] - 30s 761us/step - loss: 1.7218 - acc: 0.5745 - val_loss: 0.7780 - val
+_acc: 0.8026
 Epoch 3/15
-40000/40000 [==============================] - 65s - loss: 0.5632 - acc: 0.8469 - val_loss: 0.3775 - val_acc: 0.8994
-Epoch 4/15
-40000/40000 [==============================] - 66s - loss: 0.3812 - acc: 0.8923 - val_loss: 0.3912 - val_acc: 0.8964
-Epoch 5/15
-40000/40000 [==============================] - 67s - loss: 0.2735 - acc: 0.9218 - val_loss: 0.2458 - val_acc: 0.9374
-Epoch 6/15
-40000/40000 [==============================] - 67s - loss: 0.2164 - acc: 0.9356 - val_loss: 0.2603 - val_acc: 0.9330
-Epoch 7/15
-40000/40000 [==============================] - 67s - loss: 0.1749 - acc: 0.9469 - val_loss: 0.2283 - val_acc: 0.9389
-Epoch 8/15
-40000/40000 [==============================] - 66s - loss: 0.1402 - acc: 0.9570 - val_loss: 0.2030 - val_acc: 0.9507
-Epoch 9/15
-40000/40000 [==============================] - 66s - loss: 0.1217 - acc: 0.9625 - val_loss: 0.2070 - val_acc: 0.9481
-Epoch 10/15
-40000/40000 [==============================] - 66s - loss: 0.0981 - acc: 0.9690 - val_loss: 0.2097 - val_acc: 0.9481
-Epoch 11/15
-40000/40000 [==============================] - 65s - loss: 0.0885 - acc: 0.9727 - val_loss: 0.2145 - val_acc: 0.9485
-Epoch 12/15
-40000/40000 [==============================] - 65s - loss: 0.0826 - acc: 0.9734 - val_loss: 0.2091 - val_acc: 0.9522
-Epoch 13/15
-40000/40000 [==============================] - 66s - loss: 0.0703 - acc: 0.9779 - val_loss: 0.1951 - val_acc: 0.9541
+40000/40000 [==============================] - 30s 762us/step - loss: 0.8618 - acc: 0.7704 - val_loss: 0.4930 - val
+_acc: 0.8675
+. . .
 Epoch 14/15
-40000/40000 [==============================] - 66s - loss: 0.0665 - acc: 0.9787 - val_loss: 0.2239 - val_acc: 0.9484
+40000/40000 [==============================] - 31s 763us/step - loss: 0.1265 - acc: 0.9607 - val_loss: 0.3307 - val_acc: 0.9181
 Epoch 15/15
-40000/40000 [==============================] - 66s - loss: 0.0568 - acc: 0.9820 - val_loss: 0.2226 - val_acc: 0.9519
-Test score: 0.189350152647
-Test accuracy: 0.95839959825
+40000/40000 [==============================] - 30s 762us/step - loss: 0.1179 - acc: 0.9640 - val_loss: 0.3282 - val_acc: 0.9198
+Test score: 0.32826207710256655
+Test accuracy: 0.9214865656650205
 ```
 4. (Optional) Generate a report of some classifications:
 ```
-$ python3 4-draw_results.py HWDB1.1subset.hdf5 model.json weights.hdf5
-Using Theano backend.
-
-Using gpu device 0: GeForce GTX 970 (CNMeM is disabled, cuDNN not available)
+$ python3 4-draw_results.py HWDB1.1subset.hdf5 model-1528618732.json weights-1528618732-0.921487.hdf5
+Using TensorFlow backend.
+. . .
+2018-06-10 10:33:17.881820: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1053] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 3608 MB memory) -> physical GPU (device: 0, name: GeForce GTX 970, pci bus id: 0000:02:00.0, compute capability: 5.2)
 Evaluating the network on the test set...
-Test score: 0.189350152647
-Test accuracy: 0.95839959825
+Test score: 0.32826207710256655
+Test accuracy: 0.9214865656650205
 Extracting some results...
 ```
